@@ -1,0 +1,92 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans",sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.40),rgba(0,0,0,0.20)),url("https://c0.wallpaperflare.com/preview/519/791/635/concept-development-device-flat.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.form-container {
+  background-color: rgb(255,255,255,0.1);
+  border-radius: 0.75rem;
+  color: #fff;
+  width: 450px;
+  padding: 2rem;
+  position: absolute;
+  right: 250px;
+}
+.form-container .title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.input-group label {
+  display: block;
+  color: rgb(255, 255, 255);
+  margin-bottom: 0.2rem;
+}
+.input-group .password {
+  margin-top: 0.5rem;
+}
+.input-group input {
+  border-radius: 0.375rem;
+  border: 1px solid rgb(250, 250, 250);
+  outline: 0;
+  background-color: rgba(248, 244, 244, 0.233);
+  padding: 0.75rem 1rem;
+  color: rgba(243, 244, 246, 1);
+  width: 100%;
+}
+.input-group input:focus {
+  border-color: rgba(167, 139, 250);
+}
+
+.sign-up a {
+  color: rgba(243, 244, 246, 1);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.sign-up a:hover {
+  color: rgba(167, 139, 250, 1) ;
+  text-decoration: underline rgba(167, 139, 250, 1);
+}
+.sign-in {
+  display: block;
+  width: 100%;
+  background-color: rgba(167, 139, 250, 1);
+  padding: 0.75rem;
+  text-align: center;
+  color: rgba(17, 24, 39, 1);
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
+
+.sign-up {
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
+  margin-top: 0.5rem;
+}
+/* MEDIA QUERIES  */
+@media (width <= 420px) {
+    .form-container {
+        width: 340px;
+    }
+}

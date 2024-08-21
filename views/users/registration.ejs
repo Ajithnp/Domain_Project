@@ -1,0 +1,63 @@
+<%- include('../layouts/header') %>
+
+
+<div class="form-container">
+    <h1 class="title">User Registration Form</h1>
+    <form action="" method="post"   class="form">
+        <div class="input-group">
+            <label for="Name" class="name">Name</label>
+            <input type="text" name="name" required>
+        </div>
+        <div class="input-group">
+            <label for="email" class="email">Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="mobile" class="mobile">Mobile</label>
+            <input type="text" name="mno" required>
+        </div>
+        <div class="input-group">
+            <label for="password" class="password">Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="forgot">
+            <a href="#">Forgot password ?</a>
+        </div>
+        <button class="sign-in">Sign in</button>
+        <p class="sign-up">Already have an account?
+            <a href="/login">Sign In</a>
+        </p>
+
+            <span style="color: green; text-align: center;"></p>
+            <% 
+            
+              if(typeof message!== 'undefined'){
+                 %>
+                 <span style="color: rgb(18, 236, 18); text-align: center;"><%= message %></p>
+            
+                 <%
+                 
+              }
+            
+            
+            %>
+    </form>
+</div>
+
+<!-- <form action="" method="post" >
+    <input type="text" name="name" placeholder="Enter name" required>
+    <br><br>
+    <input type="email" name="email" placeholder="Enter Email" required>
+    <br><br>
+    <input type="text" name="mno" placeholder="Enter Mobile" required>
+    <br><br>
+
+    <input type="password" name="password" placeholder="Enter password" required>
+    <br><br>
+    <input type="submit" value="Register">
+    <br><br>
+</form>    -->
+
+
+
+<%- include('../layouts/footer.ejs') -%>

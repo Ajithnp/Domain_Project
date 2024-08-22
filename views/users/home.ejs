@@ -24,7 +24,7 @@
           <span><%= user.mobile %></span>
         </div>
         <div class="detail-item">
-            <label>Verified:</label>
+            
             <span>
                 <% if(user.is_varified == 1){
                     %>
@@ -39,7 +39,9 @@
 
 
 
-
+<a href="/edit?id=<%=user._id%>">
+    <button class="btn">Edit</button>
+</a>
 <a href="/logout">
     <button class="btn">Logout</button>
 </a>

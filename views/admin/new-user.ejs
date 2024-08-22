@@ -1,8 +1,7 @@
 <%- include('../layouts/header') %>
 
-
 <div class="form-container">
-    <h1 class="title">User Registration Form</h1>
+    <h1 class="title">Add New User</h1>
     <form action="" method="post"   class="form">
         <div class="input-group">
             <label for="Name" class="name">Name</label>
@@ -16,24 +15,18 @@
             <label for="mobile" class="mobile">Mobile</label>
             <input type="text" name="mno" required>
         </div>
-        <div class="input-group">
+        <!-- <div class="input-group">
             <label for="password" class="password">Password</label>
             <input type="password" name="password" required>
-        </div>
-        <div class="forgot">
-            <a href="#">Forgot password ?</a>
-        </div>
-        <button class="sign-in">Sign in</button>
-        <p class="sign-up">Already have an account?
-            <a href="/login">Sign In</a>
-        </p>
-
-            <span style="color: green; text-align: center;"></p>
+        </div> -->
+       
+        <button class="sign-in">Add User</button>
+        
             <% 
             
               if(typeof message!== 'undefined'){
                  %>
-                 <span style="color: rgb(18, 236, 18); text-align: center;"><%= message %></p>
+                 <span style="color: rgb(235, 24, 24); text-align: center;"><%= message %></p>
             
                  <%
                  
@@ -43,6 +36,5 @@
             %>
     </form>
 </div>
-
-
+<a href="/admin/dashboard">Back</a>
 <%- include('../layouts/footer.ejs') -%>

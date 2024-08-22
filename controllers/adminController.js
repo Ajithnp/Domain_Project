@@ -1,6 +1,20 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
+const randomstring = require('randomstring')
 
+
+const securePassword = async(password)=>{
+    try{
+        const passwordHash = await bcrypt.hash(password,10);
+        return passwordHash;
+
+    }
+    catch(error){
+        console.log(error.message);
+        
+
+    }
+}
 //admin log-in route handler
 const loadLogin = async(req,res)=>{
     try{
@@ -54,7 +68,8 @@ const verifyLogin = async(req,res)=>{
 //admin log success dashboard handler
 const loadDashboard = async(req,res)=>{
     try{
-        res.render('home')
+       const userData = await User.findById({_id:req.session.user_id});
+        res.render('home',{admin:userData});
     }
     catch(error){
         console.log(error.message);
@@ -75,10 +90,122 @@ const logout = async(req,res)=>{
         
     }
 }
+//dashboard route Handler
+const adminDashboard = async(req,res)=>{
+    try{
+        //fetching all users data from DB
+        const usersData = await User.find({is_admin:0})
+
+        res.render('dashboard',{users:usersData});
+
+    }
+    catch(error){
+        console.log(error.message);
+        
+    }
+
+}
+//Add new user handler
+const newUserLoad = async (req,res)=>{
+    try{
+        res.render('new-user');
+
+    }
+    catch(error){
+        console.log(error.message);
+        
+    }
+}
+//new User post
+const addUser = async(req,res)=>{
+    try{
+        const name = req.body.name;
+        const email = req.body.email;
+        const mno = req.body.mno;
+        const password = randomstring.generate(8);
+
+        const spassword = await securePassword(password);
+
+        const user = new User({
+            name:name,
+            email:email,
+            mobile:mno,
+            password:spassword,
+            is_admin:0
+        });
+
+        const userData = await user.save()
+        if(userData){
+            res.redirect('/admin/dashboard')
+
+        }
+        else{
+            res.render('new-user',{message:'Something wrong..!'})
+
+        }
+
+
+    }
+    catch(error){
+        console.log(error.message);
+        
+    }
+}
+// edit User Handler
+const editUserLoad = async(req,res)=>{
+    try{
+        const id = req.query.id;
+       const userData= await User.findById({_id:id});
+       if(userData){
+        res.render('edit-user',{user:userData});
+
+       }
+       else{
+        res.redirect('/admin/dashboard')
+       }
+             
+
+    } 
+    catch(error){
+        console.log(error.message);
+        
+    }
+}
+// user edit post Handler
+const updateUsers = async(req,res)=>{
+    try{
+    const userData = await User.findByIdAndUpdate({_id:req.body.id},{$set:{name:req.body.name,email:req.body.email,mobile:req.body.mno}});
+        res.redirect('/admin/dashboard')
+
+    }
+    catch(error){
+        console.log(error.message);
+        
+    }
+}
+// delete User get Handler
+const deleteUser = async(req,res)=>{
+    try{
+        const id = req.query.id;
+       await User.deleteOne({_id:id});
+        res.redirect('/admin/dashboard');
+
+    }
+    catch(error){
+        console.log(error.message);
+        
+    }
+}
 
 module.exports = {
     loadLogin,
     verifyLogin,
     loadDashboard,
-    logout
+    logout,
+    adminDashboard,
+    newUserLoad,
+    addUser,
+    editUserLoad,
+    updateUsers,
+    deleteUser
 }

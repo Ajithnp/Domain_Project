@@ -30,6 +30,20 @@ admin_route.get('/home',auth.isLogin,adminController.loadDashboard);
 
 //admin logout
 admin_route.get('/logout',auth.isLogin,adminController.logout)
+
+//dash board 
+admin_route.get('/dashboard',auth.isLogin,adminController.adminDashboard);
+
+// add new User
+admin_route.get('/new-user',auth.isLogin,adminController.newUserLoad);
+//new user Post
+admin_route.post('/new-user',adminController.addUser)
+//Update user
+admin_route.get('/edit-user',auth.isLogin,adminController.editUserLoad)
+
+admin_route.post('/edit-user',adminController.updateUsers)
+//delete User
+admin_route.get('/delete-user',adminController.deleteUser)
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin')
 });

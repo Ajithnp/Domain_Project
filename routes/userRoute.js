@@ -27,6 +27,7 @@ user_route.use(bodyParser.urlencoded({extended:true}))
 
 
 const userController = require('../controllers/userController');
+const { adminDashboard } = require('../controllers/adminController');
 
 user_route.get('/register',auth.isLogout,userController.loadRegister);
 
@@ -45,6 +46,11 @@ user_route.get('/home',auth.isLogin,userController.loadHome)
 
 //logout route
 user_route.get('/logout',auth.isLogin,userController.userLogout);
+
+//Edit route
+user_route.get('/edit',auth.isLogin,userController.editUser)
+//edit post 
+user_route.post('/edit',userController.updateProfile)
 
 
 

@@ -196,6 +196,24 @@ const deleteUser = async(req,res)=>{
         
     }
 }
+// search user
+const searchUser = async (req, res) => {  
+    try {
+        const query = req.query.query || '';
+        const users = await User.find({
+            $or: [
+                { name: { $regex: `^${query}`, $options: 'i' } },
+                { email: { $regex: `^${query}`, $options: 'i' } }
+            ]
+        });
+
+        res.render('dashboard', { users });
+    } catch (error) {
+        console.log(error.message);
+        
+    }
+};
+
 
 module.exports = {
     loadLogin,
@@ -207,5 +225,6 @@ module.exports = {
     addUser,
     editUserLoad,
     updateUsers,
-    deleteUser
+    deleteUser,
+    searchUser
 }

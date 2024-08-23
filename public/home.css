@@ -64,4 +64,9 @@ body {
   .detail-item span {
     color: rgba(237, 221, 221,0.85);
   }
+  .btn{
+    font-size: 1.2rem;
+    font-weight: 500;
+
+  }
 

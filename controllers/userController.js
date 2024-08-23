@@ -47,7 +47,7 @@ const insertUser = async(req,res)=>{
         console.log('User to be saved:', userData);
 
         if(userData){
-            res.render('registration',{message:'registration successfully. Please verify your email'})
+            res.render('registration',{message:'registration successfully..!'})
         }else{
             res.render('registration',{message:'Your registration has been failed.'})
         }

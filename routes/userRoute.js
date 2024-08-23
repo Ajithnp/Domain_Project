@@ -6,12 +6,16 @@ const session = require('express-session');
 //session handling
 const config = require('../config/config');
 user_route.use(session({
-    secret:config.sessionSecret
+    secret:config.sessionSecret,
+    resave:false,
+    saveUninitialized:true
 }))
 
 
 const auth = require('../middleware/auth');
 //using log-in ,log-out middleware from auth.js
+
+const mailAuth = require('../middleware/mailAuth')
 
 
 user_route.set('view engine','ejs')
@@ -28,11 +32,12 @@ user_route.use(bodyParser.urlencoded({extended:true}))
 
 const userController = require('../controllers/userController');
 const { adminDashboard } = require('../controllers/adminController');
+// const isMail = require('../middleware/mailAuth');
 
 user_route.get('/register',auth.isLogout,userController.loadRegister);
 
 
-user_route.post('/register',userController.insertUser)
+user_route.post('/register',mailAuth,userController.insertUser)
 
 //login route(home)
 user_route.get('/',auth.isLogout,userController.loginLoad);

@@ -20,9 +20,9 @@
             <label for="password" class="password">Password</label>
             <input type="password" name="password" required>
         </div>
-        <div class="forgot">
+        <!-- <div class="forgot">
             <a href="#">Forgot password ?</a>
-        </div>
+        </div> -->
         <button class="sign-in">Sign in</button>
         <p class="sign-up">Already have an account?
             <a href="/login">Sign In</a>
@@ -34,6 +34,7 @@
               if(typeof message!== 'undefined'){
                  %>
                  <span style="color: rgb(18, 236, 18); text-align: center;"><%= message %></p>
+
             
                  <%
                  
@@ -41,6 +42,19 @@
             
             
             %>
+            <% 
+            
+            if(typeof message1!== 'undefined'){
+               %>
+               <span style="color: rgb(236, 18, 18); text-align: center;"><%= message1 %></p>
+                  
+          
+               <%
+               
+            }
+          
+          
+          %>
     </form>
 </div>
 

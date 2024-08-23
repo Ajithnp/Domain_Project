@@ -4,7 +4,10 @@ const admin_route = express();
 //session setting
 const session = require('express-session');
 const config = require('../config/config');
-admin_route.use(session({secret:config.sessionSecret}))
+admin_route.use(session({secret:config.sessionSecret,
+    resave:false,
+    saveUninitialized:true
+}))
 
 
 const bodyParser = require('body-parser')
@@ -44,6 +47,8 @@ admin_route.get('/edit-user',auth.isLogin,adminController.editUserLoad)
 admin_route.post('/edit-user',adminController.updateUsers)
 //delete User
 admin_route.get('/delete-user',adminController.deleteUser)
+//search user
+admin_route.get('/search',auth.isLogin,adminController.searchUser)
 admin_route.get('*',(req,res)=>{
     res.redirect('/admin')
 });
